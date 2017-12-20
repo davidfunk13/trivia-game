@@ -1,0 +1,14 @@
+.col-lg-6 {
+    border: 1px solid black;
+    margin-bottom: 20px;
+
+}
+.left {
+    margin-right:5px;
+    width: 45%;
+    margin-left: 40px;
+    margin-right: 30px;
+}
+.right {
+    width: 45%;
+}
