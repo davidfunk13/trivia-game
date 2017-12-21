@@ -41,12 +41,8 @@ var questionFour = {
         answer: "seven",
     }
 };
-function randomQuestion() {
-    var questionArray = [questionOne.question, questionTwo.question, questionThree.question, questionFour.question]
-
-
-}
+var questionArray = [questionOne.question, questionTwo.question, questionThree.question, questionFour.question] 
+// console.log(questionArray[2].toString());
 $("#questionsdiv").html(questionOne.question);
-
-console.log(questionOne.question);;
 });
+ 
