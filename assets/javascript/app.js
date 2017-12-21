@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 var questionOne = {
-    question: "How much wood would a woodchuck chuck if a woodchuck would chuck wood",
+    question: "What is the answer to QuestionOne?",
     answers: {
         a: "seven",
         b: "six",
@@ -12,7 +12,7 @@ var questionOne = {
 };
 
 var questionTwo = {
-    question: "Why",
+    question: "What is the answer to QuestionTwo?",
     answers: {
         a: "seven",
         b: "six",
@@ -22,7 +22,7 @@ var questionTwo = {
     }
 };
 var questionThree = {
-    question: "How many times is too many",
+    question: "What is the answer to QuestionThree?",
     answers: {
         a: "seven",
         b: "six",
@@ -32,7 +32,7 @@ var questionThree = {
     }
 };
 var questionFour = {
-    question: "Who dunnit",
+    question: "What is the answer to questionFour?",
     answers: {
         a: "seven",
         b: "six",
@@ -41,8 +41,13 @@ var questionFour = {
         answer: "seven",
     }
 };
+console.log(questionOne.answers.a)
 var questionArray = [questionOne.question, questionTwo.question, questionThree.question, questionFour.question] 
 // console.log(questionArray[2].toString());
 $("#questionsdiv").html(questionOne.question);
+$("#answerone").html(questionOne.answers.a);
+$('#answertwo').html(questionOne.answers.b);
+$('#answerthree').html(questionOne.answers.c);
+$('#answerfour').html(questionOne.answers.d);
 });
  
