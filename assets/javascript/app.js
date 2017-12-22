@@ -36,11 +36,6 @@ $(document).ready(function () {
         $('.start-game').addClass("hidden");
         $('#questionsdiv').removeClass("hidden");
     })
-    // function startGame () {
-
-    // }
-    // **** uncomment to print question to page startgame function below
-    // startGame();
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
     }
