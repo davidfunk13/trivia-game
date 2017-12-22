@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     var rightAnswers = 0;
     var wrongAnswers = 0;
     var unAnswered = 0;
@@ -27,9 +26,14 @@ $(document).ready(function () {
             correct: "seven",
         }
     ];
+    var currentQuestion = 0;
+    function printCurrentQuestion(currentQuestion) {
+        $('#questionsdiv').html(triviaQuestions[currentQuestion].question);
+    }
+    printCurrentQuestion(currentQuestion);
+
     //function that prints answers on buttons. Takes argument 'indexOfQuestion'
     function printAnswerButtons(indexOfQuestion) {
-        $('#questionsdiv').html(triviaQuestions[indexOfQuestion].question);
         for (var i = 0; i < 4; i++) {
             var button = $("<button>");
             button.addClass("button");
@@ -38,6 +42,8 @@ $(document).ready(function () {
         }
     };
     printAnswerButtons(0);
+
+    //button on click functions.
     $(document).on("click", ".button", function () {
         var answer = $(this).text();
         console.log(answer);
