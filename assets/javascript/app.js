@@ -26,11 +26,20 @@ $(document).ready(function () {
             correct: "seven",
         }
     ];
+    // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
+    //will be incremented (++) to display a new question.
     var currentQuestion = 0;
-    function printCurrentQuestion(currentQuestion) {
-        $('#questionsdiv').html(triviaQuestions[currentQuestion].question);
+    //function that prints the current question to the page, takes an argument of "current question"
+    function startGame () {
+        printCurrentQuestion(currentQuestion);
+        printAnswerButtons(0);
     }
-    printCurrentQuestion(currentQuestion);
+    // **** uncomment to print question to page startgame function below
+    // startGame();
+    function printCurrentQuestion(currentQuestion) {
+        $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
+    }
+    // printCurrentQuestion(currentQuestion);
 
     //function that prints answers on buttons. Takes argument 'indexOfQuestion'
     function printAnswerButtons(indexOfQuestion) {
@@ -41,7 +50,7 @@ $(document).ready(function () {
             $("#questionsdiv").append(button);
         }
     };
-    printAnswerButtons(0);
+    // printAnswerButtons(0);
 
     //button on click functions.
     $(document).on("click", ".button", function () {
