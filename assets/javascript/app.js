@@ -30,12 +30,17 @@ $(document).ready(function () {
     //will be incremented (++) to display a new question.
     var currentQuestion = 0;
     //function that prints the current question to the page, takes an argument of "current question"
-    function startGame () {
+    $('.start-game').on("click", function() {
         printCurrentQuestion(currentQuestion);
         printAnswerButtons(0);
-    }
+        $('.start-game').addClass("hidden");
+        $('#questionsdiv').removeClass("hidden");
+    })
+    // function startGame () {
+
+    // }
     // **** uncomment to print question to page startgame function below
-    startGame();
+    // startGame();
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
     }
@@ -50,25 +55,9 @@ $(document).ready(function () {
             $("#questionsdiv").append(button);
         }
     };
-    // printAnswerButtons(0);
-
     //button on click functions.
     $(document).on("click", ".button", function () {
         var answer = $(this).text();
         console.log(answer);
     })
-
-
-
-// function startGame() {
-// $('#questionsdiv').html(triviaQuestions[0].question);
-// }
-
-//what to do next?
-
-// Hide everything and do a start game function? press start to start?
-// timer implemetation
-// correct answer confirmation
-
-
 });
