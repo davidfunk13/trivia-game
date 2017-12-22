@@ -4,6 +4,7 @@ $(document).ready(function () {
     var wrongAnswers = 0;
     var unAnswered = 0;
 
+
     var triviaQuestions = [{
             question: "What is the answer to QuestionOne?",
             possibleAnswers: ["seven", "six", "fourteen", "twenty"],
@@ -30,13 +31,19 @@ $(document).ready(function () {
     console.log(triviaQuestions[0].possibleAnswers)
     //question one work
     $('#questionsdiv').html(triviaQuestions[0].question);
-    $('#answerone').html(triviaQuestions[0].possibleAnswers[0]);
-    $('#answertwo').html(triviaQuestions[0].possibleAnswers[1]);
-    $('#answerthree').html(triviaQuestions[0].possibleAnswers[2]);
-    $('#answerfour').html(triviaQuestions[0].possibleAnswers[3]);
+    //for loop that prints questions
+    for (var i = 0; i < 4; i++) {
+        $('#answer'+ i).html(triviaQuestions[0].possibleAnswers[i]);
+    }
+function startGame() {
+    $('#questionsdiv').html(triviaQuestions[0].question);
+}
 
-    //question one control flow
-correctAnswerCheck()
+//what to do next?
+
+// Hide everything and do a start game function? press start to start?
+// timer implemetation
+// correct answer confirmation
 
 
 });
