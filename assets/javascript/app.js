@@ -7,23 +7,23 @@ $(document).ready(function () {
     var triviaQuestions = [{
             question: "What is the answer to QuestionOne?",
             possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: "seven",
+            correct: 0,
 
         },
         {
             question: "What is the answer to QuestionTwo?",
             possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: "seven",
+            correct: 0,
         },
         {
             question: "What is the answer to QuestionThree?",
             possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: "seven",
+            correct: 0,
         },
         {
             question: "What is the answer to questionFour?",
             possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: "seven",
+            correct: 0,
         }
     ];
     // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
@@ -35,7 +35,7 @@ $(document).ready(function () {
         printAnswerButtons(0);
     }
     // **** uncomment to print question to page startgame function below
-    // startGame();
+    startGame();
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
     }
