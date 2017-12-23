@@ -36,6 +36,8 @@ $(document).ready(function () {
         printAnswerButtons(0);
         $('.start-game').addClass("hidden");
         $('#questionsdiv').removeClass("hidden");
+        $('#buttonsdiv').removeClass("hidden");
+        
     })
 
     function printCurrentQuestion(currentQuestion) {
@@ -49,7 +51,7 @@ $(document).ready(function () {
             button.addClass("button");
             button.attr("data-index", i);
             button.text(triviaQuestions[indexOfQuestion].possibleAnswers[i]);
-            $("#questionsdiv").append(button);
+            $("#buttonsdiv").append(button);
         }
     };
     //button on click functions.
@@ -61,7 +63,7 @@ $(document).ready(function () {
             alert("right answer yadig");
         }
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
-            alert("WRONG!!");
+            alert("WRONG!!")
         }
 
         console.log({
