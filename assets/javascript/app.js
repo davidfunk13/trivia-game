@@ -2,7 +2,7 @@ $(document).ready(function () {
     var rightAnswers = 0;
     var wrongAnswers = 0;
     var noAnswer = 0;
-    
+
 
 
     var triviaQuestions = [{
@@ -37,7 +37,7 @@ $(document).ready(function () {
         showScoreboard();
         $('.start-game').addClass("hidden");
         $('#buttonsdiv').removeClass("hidden");
-
+        initiateTimer();
     })
 
     function showScoreboard() {
@@ -45,8 +45,40 @@ $(document).ready(function () {
         $('#rightanswers').html("Correct answers: " + rightAnswers);
         $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
         $('#noanswer').html("Questions Timed Out: " + noAnswer);
-        $('#timer').html();
-        $('#questionsremaining').html();        
+        $('#questionsremaining').html();
+    }
+    var timeRemaining = 10;
+    var intervalVar
+//this variable is wrapped in a function to give us a function to call to start the timer, and to prevent it from just running on load.
+    function theTimer() {
+        intervalVar = setInterval(countDown, 1000);
+    }
+
+    function countDown() {
+        timeRemaining--;
+        $('#timer').html(timeRemaining);
+        if (timeRemaining === 0) {
+            // stop();      
+            timeOut();
+        }
+    }
+    function initiateTimer(){
+        $('#timer').html(theTimer);        
+    }
+    // function stop() {
+    //     clearInterval(intervalVar);
+    //     timeRemaining =10;
+        
+    // }
+    function timeOut() {
+        clearInterval(intervalVar);
+        timeRemaining =10;
+        alert("Time has run out.");            
+        noAnswer++
+        currentQuestion++     
+        printCurrentQuestion(currentQuestion);        
+        showScoreboard();
+        initiateTimer();
     }
 
     function printCurrentQuestion(currentQuestion) {
@@ -66,6 +98,9 @@ $(document).ready(function () {
         }
     };
     //button on click functions.
+    function dataAssign() {
+        
+    }
     $(document).on("click", ".button", function () {
         var answerText = $(this).text();
         var answerDataValue = $(this).attr("data-index");
@@ -86,8 +121,8 @@ $(document).ready(function () {
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             alert("WRONG!!");
             wrongAnswers++
-            currentQuestion++
             showScoreboard();
+            currentQuestion++
             printCurrentQuestion(currentQuestion);
             // $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
 
