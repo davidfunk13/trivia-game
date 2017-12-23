@@ -2,7 +2,6 @@ $(document).ready(function () {
     var rightAnswers = 0;
     var wrongAnswers = 0;
     var unAnswered = 0;
-    var dataIndex = document.querySelectorAll(".button[data-index]");
 
 
     var triviaQuestions = [{
