@@ -2,6 +2,7 @@ $(document).ready(function () {
     var rightAnswers = 0;
     var wrongAnswers = 0;
     var unAnswered = 0;
+    var dataIndex = document.querySelectorAll(".button[data-index]");
 
 
     var triviaQuestions = [{
@@ -39,20 +40,22 @@ $(document).ready(function () {
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
     }
-    // printCurrentQuestion(currentQuestion);
 
     //function that prints answers on buttons. Takes argument 'indexOfQuestion'
     function printAnswerButtons(indexOfQuestion) {
         for (var i = 0; i < 4; i++) {
             var button = $("<button>");
             button.addClass("button");
+            button.attr("data-index", i);
             button.text(triviaQuestions[indexOfQuestion].possibleAnswers[i]);
             $("#questionsdiv").append(button);
         }
     };
     //button on click functions.
     $(document).on("click", ".button", function () {
-        var answer = $(this).text();
-        console.log(answer);
+        var answerText = $(this).text();
+        var answerValue = $(this).attr("data-index");
+        console.log(answerValue);
+        console.log(answerText);
     })
 });
