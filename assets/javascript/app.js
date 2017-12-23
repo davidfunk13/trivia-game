@@ -55,7 +55,15 @@ $(document).ready(function () {
     $(document).on("click", ".button", function () {
         var answerText = $(this).text();
         var answerValue = $(this).attr("data-index");
+        if (triviaQuestions[currentQuestion].correct === answerValue) {
+            alert("right answer yadig");
+        }
+        if(triviaQuestions[currentQuestion].correct !== answerValue) {
+            alert("nah dude");
+        }
         console.log(answerValue);
         console.log(answerText);
+        console.log(triviaQuestions[currentQuestion].correct);
     })
+
 });
