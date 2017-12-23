@@ -1,7 +1,8 @@
 $(document).ready(function () {
     var rightAnswers = 0;
     var wrongAnswers = 0;
-    var unAnswered = 0;
+    var noAnswer = 0;
+    
 
 
     var triviaQuestions = [{
@@ -32,14 +33,24 @@ $(document).ready(function () {
     //function that prints the current question to the page, takes an argument of "current question"
     $('.start-game').on("click", function () {
         printCurrentQuestion(currentQuestion);
-        printAnswerButtons(0);
+        printAnswerButtons(currentQuestion);
+        showScoreboard();
         $('.start-game').addClass("hidden");
-        $('#questionsdiv').removeClass("hidden");
         $('#buttonsdiv').removeClass("hidden");
-        
+
     })
 
+    function showScoreboard() {
+        $('.scoreboard').removeClass("hidden");
+        $('#rightanswers').html("Correct answers: " + rightAnswers);
+        $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
+        $('#noanswer').html("Questions Timed Out: " + noAnswer);
+        $('#timer').html();
+        $('#questionsremaining').html();        
+    }
+
     function printCurrentQuestion(currentQuestion) {
+        $('#questionsdiv').removeClass("hidden");
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
     }
 
@@ -61,9 +72,21 @@ $(document).ready(function () {
         var answerIndex = parseInt(answerDataValue)
         if (triviaQuestions[currentQuestion].correct === answerIndex) {
             alert("right answer yadig");
+            rightAnswers++
+            console.log({
+                "right answers": rightAnswers
+            }, {
+                "wrong answers": wrongAnswers
+            });
         }
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
-            alert("WRONG!!")
+            alert("WRONG!!");
+            wrongAnswers++
+            console.log({
+                "right answers": rightAnswers
+            }, {
+                "wrong answers": wrongAnswers
+            });
         }
 
         console.log({
