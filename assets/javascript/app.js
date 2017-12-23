@@ -73,6 +73,7 @@ $(document).ready(function () {
         if (triviaQuestions[currentQuestion].correct === answerIndex) {
             alert("right answer yadig");
             rightAnswers++
+            $('#rightanswers').html("Correct answers: " + rightAnswers);
             console.log({
                 "right answers": rightAnswers
             }, {
@@ -82,6 +83,8 @@ $(document).ready(function () {
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             alert("WRONG!!");
             wrongAnswers++
+            $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
+
             console.log({
                 "right answers": rightAnswers
             }, {
