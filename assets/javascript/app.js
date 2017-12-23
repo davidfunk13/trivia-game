@@ -29,20 +29,20 @@ $(document).ready(function () {
 
 
     var triviaQuestions = [{
-            question: "What is the answer to QuestionOne?",
-            possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: 0,
+            question: "What is the greatest band in the world?",
+            possibleAnswers: ["Electric Dream Machine", "Boyz II Men", "Chumbawamba", "Steve Winwood"],
+            correct: 2,
 
         },
         {
-            question: "What is the answer to QuestionTwo?",
-            possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: 0,
+            question: "Dennis is asshole. Why Charlie Hate?",
+            possibleAnswers: ["Little green ghouls, man.", "Charlie-work", "Made him do the dishes.", "BECAUSE DENNIS IS A BASTARD MAN."],
+            correct: 3,
         },
         {
-            question: "What is the answer to QuestionThree?",
-            possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: 0,
+            question: "What is the 'S' in the D.E.N.N.I.S. System?",
+            possibleAnswers: ["Shenanigans", "Seperate Entirely", "Sensual Energy", "Signal Break Up"],
+            correct: 1,
         },
         {
             question: "What is the answer to questionFour?",
