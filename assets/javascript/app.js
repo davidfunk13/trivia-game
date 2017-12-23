@@ -31,12 +31,13 @@ $(document).ready(function () {
     //will be incremented (++) to display a new question.
     var currentQuestion = 0;
     //function that prints the current question to the page, takes an argument of "current question"
-    $('.start-game').on("click", function() {
+    $('.start-game').on("click", function () {
         printCurrentQuestion(currentQuestion);
         printAnswerButtons(0);
         $('.start-game').addClass("hidden");
         $('#questionsdiv').removeClass("hidden");
     })
+
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
     }
@@ -54,16 +55,21 @@ $(document).ready(function () {
     //button on click functions.
     $(document).on("click", ".button", function () {
         var answerText = $(this).text();
-        var answerValue = $(this).attr("data-index");
-        if (triviaQuestions[currentQuestion].correct === answerValue) {
+        var answerDataValue = $(this).attr("data-index");
+        var answerIndex = parseInt(answerDataValue)
+        if (triviaQuestions[currentQuestion].correct === answerDataValue) {
             alert("right answer yadig");
         }
-        if(triviaQuestions[currentQuestion].correct !== answerValue) {
-            alert("nah dude");
-        }
-        console.log(answerValue);
-        console.log(answerText);
-        console.log(triviaQuestions[currentQuestion].correct);
+
+        console.log({
+            "users choice": answerText
+        }, {
+            "index Data Value assigned to choice": answerDataValue
+        }, {
+            "Correct answer's index": triviaQuestions[currentQuestion].correct
+        }, {
+            "users choice data attr string parsed to int": answerIndex
+        });
     })
 
 });
