@@ -5,9 +5,9 @@
 // - Fix all bugs with timer.
 //      - "staggered" timer when user clicks an answer and next question displays.
 //      - same with incorrect answers
+//----------------------//
 // Easy Fixes //
-//---------------//
-
+//----------------------//
 // - Add instructions.
 // - Add actual questions and change correct answer index'
 // - Add instructions
@@ -15,19 +15,14 @@
 //      - If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
 //      - If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
 //      - If the player chooses the right answer, tell the player they selected the correct answer on the page. Wait a few seconds, show the next question.
-        
-// - Add a div with hidden toggles to show when out of questions showing score, and offering a reset.
-
-
-
-
+//      - Add a div with hidden toggles to show when out of questions showing score, and offering a reset.
+//----------------------//
 $(document).ready(function () {
+    //globals
     var rightAnswers = 0;
     var wrongAnswers = 0;
     var noAnswer = 0;
-
-
-
+    //Questions array of objects
     var triviaQuestions = [{
             question: "What is the answer to QuestionOne?",
             possibleAnswers: ["seven", "six", "fourteen", "twenty"],
@@ -62,7 +57,7 @@ $(document).ready(function () {
         $('#buttonsdiv').removeClass("hidden");
         initiateTimer();
     })
-
+    //unhides scoreboard initially, but also used as sort of a "refresh" function.
     function showScoreboard() {
         $('.scoreboard').removeClass("hidden");
         $('#rightanswers').html("Correct answers: " + rightAnswers);
@@ -70,9 +65,11 @@ $(document).ready(function () {
         $('#noanswer').html("Questions Timed Out: " + noAnswer);
         $('#questionsremaining').html();
     }
+    //time in seconds, essentially.
     var timeRemaining = 10;
+
     var intervalVar
-//this variable is wrapped in a function to give us a function to call to start the timer, and to prevent it from just running on load.
+    //this variable is wrapped in a function to give us a function to call to start the timer, and to prevent it from just running on load.
     function theTimer() {
         intervalVar = setInterval(countDown, 1000);
     }
@@ -80,30 +77,26 @@ $(document).ready(function () {
     function countDown() {
         timeRemaining--;
         $('#timer').html(timeRemaining);
-        if (timeRemaining === 0) {
-            // stop();      
+        if (timeRemaining === 0) {     
             timeOut();
         }
     }
-    function initiateTimer(){
-        $('#timer').html(theTimer);        
+    //small function to call the timer to start
+    function initiateTimer() {
+        $('#timer').html(theTimer);
     }
-    // function stop() {
-    //     clearInterval(intervalVar);
-    //     timeRemaining =10;
-        
-    // }
+    //function incriments noAnswer by one, selects and prints the next question, refreshes the scoreboard, and restarts the timer if the timer runs out on the previous question.
     function timeOut() {
         clearInterval(intervalVar);
-        timeRemaining =10;
-        alert("Time has run out.");            
+        timeRemaining = 10;
+        alert("Time has run out.");
         noAnswer++
-        currentQuestion++     
-        printCurrentQuestion(currentQuestion);        
+        currentQuestion++
+        printCurrentQuestion(currentQuestion);
         showScoreboard();
         initiateTimer();
     }
-
+    //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').removeClass("hidden");
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
@@ -121,18 +114,15 @@ $(document).ready(function () {
         }
     };
     //button on click functions.
-    function dataAssign() {
-        
-    }
     $(document).on("click", ".button", function () {
         var answerText = $(this).text();
         var answerDataValue = $(this).attr("data-index");
         var answerIndex = parseInt(answerDataValue)
+        //control flow for answering questions
         if (triviaQuestions[currentQuestion].correct === answerIndex) {
             alert("right answer yadig");
             rightAnswers++
             currentQuestion++
-            // $('#rightanswers').html("Correct answers: " + rightAnswers);
             showScoreboard();
             printCurrentQuestion(currentQuestion);
             console.log({
@@ -147,15 +137,13 @@ $(document).ready(function () {
             showScoreboard();
             currentQuestion++
             printCurrentQuestion(currentQuestion);
-            // $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
-
             console.log({
                 "right answers": rightAnswers
             }, {
                 "wrong answers": wrongAnswers
             });
         }
-
+        //console logs all info needed to write control flow.
         console.log({
             "users choice": answerText
         }, {
@@ -165,6 +153,6 @@ $(document).ready(function () {
         }, {
             "users choice data attr string parsed to int": answerIndex
         });
-    })
+    })    // End of onclick for buttons
 
 });
