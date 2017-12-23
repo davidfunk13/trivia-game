@@ -1,3 +1,26 @@
+//Remaining Tasks:
+
+//Time Consuming tasks//
+//----------------------//
+// - Fix all bugs with timer.
+//      - "staggered" timer when user clicks an answer and next question displays.
+//      - same with incorrect answers
+// Easy Fixes //
+//---------------//
+
+// - Add instructions.
+// - Add actual questions and change correct answer index'
+// - Add instructions
+// - remove alerts, add actual conformation divs and hide/unhide toggle them for right and wrong answers etc.
+//      - If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
+//      - If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
+//      - If the player chooses the right answer, tell the player they selected the correct answer on the page. Wait a few seconds, show the next question.
+        
+// - Add a div with hidden toggles to show when out of questions showing score, and offering a reset.
+
+
+
+
 $(document).ready(function () {
     var rightAnswers = 0;
     var wrongAnswers = 0;
