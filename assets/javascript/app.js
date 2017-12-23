@@ -57,8 +57,11 @@ $(document).ready(function () {
         var answerText = $(this).text();
         var answerDataValue = $(this).attr("data-index");
         var answerIndex = parseInt(answerDataValue)
-        if (triviaQuestions[currentQuestion].correct === answerDataValue) {
+        if (triviaQuestions[currentQuestion].correct === answerIndex) {
             alert("right answer yadig");
+        }
+        if (triviaQuestions[currentQuestion].correct !== answerIndex) {
+            alert("WRONG!!");
         }
 
         console.log({
