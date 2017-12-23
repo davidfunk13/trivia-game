@@ -6,3 +6,12 @@
 .questionheader {
     text-align: center;
 }
+#questionsdiv, #buttonsdiv {
+    text-align: center;
+    padding: 10px;
+    font-size: 35px;
+}
+.choice-buttons {
+    font-size: 15px;
+    margin-left: 10px;
+}

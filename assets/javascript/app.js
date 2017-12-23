@@ -49,6 +49,7 @@ $(document).ready(function () {
         for (var i = 0; i < 4; i++) {
             var button = $("<button>");
             button.addClass("button");
+            button.addClass("choice-buttons");
             button.attr("data-index", i);
             button.text(triviaQuestions[indexOfQuestion].possibleAnswers[i]);
             $("#buttonsdiv").append(button);
