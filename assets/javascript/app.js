@@ -93,6 +93,7 @@ $(document).ready(function () {
         noAnswer++
         currentQuestion++
         printCurrentQuestion(currentQuestion);
+        printAnswerButtons(currentQuestion);
         showScoreboard();
         initiateTimer();
     }
@@ -103,13 +104,13 @@ $(document).ready(function () {
     }
 
     //function that prints answers on buttons. Takes argument 'indexOfQuestion'
-    function printAnswerButtons(indexOfQuestion) {
-        for (var i = 0; i < 4; i++) {
+    function printAnswerButtons(currentQuestion) {
+        for (var i = 0; i < triviaQuestions[currentQuestion].possibleAnswers.length; i++) {
             var button = $("<button>");
             button.addClass("button");
             button.addClass("choice-buttons");
             button.attr("data-index", i);
-            button.text(triviaQuestions[indexOfQuestion].possibleAnswers[i]);
+            button.text(triviaQuestions[currentQuestion].possibleAnswers[i]);
             $("#buttonsdiv").append(button);
         }
     };
@@ -125,6 +126,7 @@ $(document).ready(function () {
             currentQuestion++
             showScoreboard();
             printCurrentQuestion(currentQuestion);
+            printAnswerButtons(currentQuestion);
             console.log({
                 "right answers": rightAnswers
             }, {
@@ -137,6 +139,7 @@ $(document).ready(function () {
             showScoreboard();
             currentQuestion++
             printCurrentQuestion(currentQuestion);
+            printAnswerButtons(currentQuestion);
             console.log({
                 "right answers": rightAnswers
             }, {
