@@ -105,7 +105,6 @@ $(document).ready(function () {
                 buttonClear();
                 if (winCheckVar > triviaQuestions.length) {
                     winCheck();
-                    return;
                 }
                 setTimeout(function () {
                     wrongAnswers++
@@ -165,7 +164,6 @@ $(document).ready(function () {
             buttonClear();
             if (winCheckVar > triviaQuestions.length) {
                 winCheck();
-                return;
             }
             setTimeout(function () {
                 rightAnswers++
@@ -187,7 +185,6 @@ $(document).ready(function () {
             buttonClear();
             if (winCheckVar > triviaQuestions.length) {
                 winCheck();
-                return;
             }
             setTimeout(function () {
                 wrongAnswers++
@@ -212,12 +209,12 @@ $(document).ready(function () {
         if (scoreCalc >= 70) {
             console.log({"Total Score":totalScore});
             $('#questionsdiv').html("YOU WIN WITH AN AMAZING " + totalScore);
-            return;
+            throw Error("Yay win")
         }
         if (scoreCalc < 70) {
             console.log({"Total Score":totalScore});
             $('#questionsdiv').html("YOU LOSE WITH A TERRIBLE " + totalScore);
-            return;
+            throw Error ("you lose")
         }
     }
 });
