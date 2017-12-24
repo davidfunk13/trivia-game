@@ -40,9 +40,20 @@ $(document).ready(function () {
             correct: 1,
         },
         {
-            question: "What is the answer to questionFour?",
-            possibleAnswers: ["seven", "six", "fourteen", "twenty"],
-            correct: 0,
+            question: "How much cheese is too much cheese?",
+            possibleAnswers: ["One brick", "Three bricks", "Two bricks", "Any cheese before a date is too much cheese."],
+            correct: 3,
+        },
+        {
+            question: "What is Frank and Charlie's unique grooming tool?",
+            possibleAnswers: ["Back scratcher", "Toe Knife", "Pimple Popper", "Kitten Mittens"],
+            correct: 1,
+
+        },
+        {
+            question: "When the gang threw a wrestling match in honor of the troops, what did they call thier 3 man wrestling team?"
+            possibleAnswers: ["Chickenmen", "Crows of War", "Birds of War", "Eagles of War"],
+            correct: 2,
         }
     ];
     // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
