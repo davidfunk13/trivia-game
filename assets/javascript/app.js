@@ -55,7 +55,7 @@ $(document).ready(function () {
         showScoreboard();
         $('.start-game').addClass("hidden");
         $('#buttonsdiv').removeClass("hidden");
-        initiateTimer();
+        // initiateTimer();
     })
     //unhides scoreboard initially, but also used as sort of a "refresh" function.
     function showScoreboard() {
@@ -66,37 +66,36 @@ $(document).ready(function () {
         $('#questionsremaining').html();
     }
     //time in seconds, essentially.
-    var timeRemaining = 10;
+    // var timeRemaining = 10;
 
-    var intervalVar
+    // var intervalVar
     //this variable is wrapped in a function to give us a function to call to start the timer, and to prevent it from just running on load.
-    function theTimer() {
-        intervalVar = setInterval(countDown, 1000);
-    }
+    // function theTimer() {
+        // intervalVar = setInterval(countDown, 1000);
+    // }
 
-    function countDown() {
-        timeRemaining--;
-        $('#timer').html(timeRemaining);
-        if (timeRemaining === 0) {     
-            timeOut();
-        }
-    }
+    // function countDown() {
+        // timeRemaining--;
+        // $('#timer').html(timeRemaining);
+        // if (timeRemaining === 0) {     
+            // timeOut();
+        // }
+    // }
     //small function to call the timer to start
-    function initiateTimer() {
-        $('#timer').html(theTimer);
-    }
+    // function initiateTimer() {
+        // $('#timer').html(theTimer);
+    // }
     //function incriments noAnswer by one, selects and prints the next question, refreshes the scoreboard, and restarts the timer if the timer runs out on the previous question.
-    function timeOut() {
-        clearInterval(intervalVar);
-        timeRemaining = 10;
-        alert("Time has run out.");
-        noAnswer++
-        currentQuestion++
-        printCurrentQuestion(currentQuestion);
-        printAnswerButtons(currentQuestion);
-        showScoreboard();
-        initiateTimer();
-    }
+    // function timeOut() {
+        // clearInterval(intervalVar);
+        // timeRemaining = 10;
+        // alert("Time has run out.");
+        // noAnswer++
+        // currentQuestion++
+        // printCurrentQuestion(currentQuestion);
+        // showScoreboard();
+        // initiateTimer();
+    // }
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').removeClass("hidden");
@@ -105,8 +104,8 @@ $(document).ready(function () {
 
     //function that prints answers on buttons. Takes argument 'indexOfQuestion'
     function printAnswerButtons(currentQuestion) {
-        for (var i = 0; i < triviaQuestions[currentQuestion].possibleAnswers.length; i++) {
-            var button = $("<button>");
+        for (var i = 0; i < 4; i++) {
+            var button = $("<button>");           
             button.addClass("button");
             button.addClass("choice-buttons");
             button.attr("data-index", i);
@@ -114,6 +113,12 @@ $(document).ready(function () {
             $("#buttonsdiv").append(button);
         }
     };
+
+
+//clears previous buttons
+function buttonClear() {
+    $("button").remove();
+}
     //button on click functions.
     $(document).on("click", ".button", function () {
         var answerText = $(this).text();
@@ -124,6 +129,7 @@ $(document).ready(function () {
             alert("right answer yadig");
             rightAnswers++
             currentQuestion++
+            buttonClear();
             showScoreboard();
             printCurrentQuestion(currentQuestion);
             printAnswerButtons(currentQuestion);
@@ -132,12 +138,14 @@ $(document).ready(function () {
             }, {
                 "wrong answers": wrongAnswers
             });
+            return;
         }
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             alert("WRONG!!");
             wrongAnswers++
-            showScoreboard();
             currentQuestion++
+            buttonClear();
+            showScoreboard();            
             printCurrentQuestion(currentQuestion);
             printAnswerButtons(currentQuestion);
             console.log({
