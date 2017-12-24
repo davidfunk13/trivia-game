@@ -81,40 +81,63 @@ $(document).ready(function () {
         $('.scoreboard').removeClass("hidden");
         $('#rightanswers').html("Correct answers: " + rightAnswers);
         $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
-        $('#noanswer').html("Questions Timed Out: " + noAnswer);
         $('#questionsremaining').html();
     }
 
+
     function timerFunction() {
-        var timerSeconds = 20;
-        var timerInterval = setInterval(function() {
+        var timerSeconds = 20;        
+        var timerInterval = setInterval(function () {
             timerSeconds--;
             $('#timer').html("Time Remaining: " + timerSeconds);
+            $(document).on("click", ".button", function () {
+                clearInterval(timerInterval);
+                timerSeconds = 20;
+                $('#timer').html("Time Remaining: " + timerSeconds);                
+            });
             if (timerSeconds === 0) {
                 clearInterval(timerInterval);
+                timerSeconds = 20;
+                $('#timer').html("Time Remaining: " + timerSeconds);
                 textShownAfterTimeOut();
+                buttonClear();
                 setTimeout(function () {
                     wrongAnswers++
                     currentQuestion++
-                    buttonClear();
                     showScoreboard();
                     printCurrentQuestion(currentQuestion);
                     printAnswerButtons(currentQuestion);
-                    timerFunction();
                     console.log({
                         "right answers": rightAnswers
                     }, {
                             "wrong answers": wrongAnswers
                         });
-                }, 5000);
+                }, 5000)
             }
         }, 1000)
     }
+    // function timeOut() {
+    //     setTimeout(function () {
+    //         wrongAnswers++
+    //         currentQuestion++
+    //         buttonClear();
+    //         showScoreboard();
+    //         printCurrentQuestion(currentQuestion);
+    //         printAnswerButtons(currentQuestion);
+    //         timerFunction();
+    //         console.log({
+    //             "right answers": rightAnswers
+    //         }, {
+    //                 "wrong answers": wrongAnswers
+    //             });
+    //     }, 5000);
+    // }
 
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').removeClass("hidden");
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
+        timerFunction();
     }
 
     //function that prints answers on buttons. 
@@ -133,7 +156,7 @@ $(document).ready(function () {
         $('#questionsdiv').html(triviaQuestions[currentQuestion].correctScreen);
     }
     function textShownAfterAnsweringIncorrect() {
-        $('#questionsdiv').html(triviaQuestions[currentQuestion].incorrectScreen);        
+        $('#questionsdiv').html(triviaQuestions[currentQuestion].incorrectScreen);
     }
     function textShownAfterTimeOut() {
         $('#questionsdiv').html("timeout")
@@ -150,10 +173,10 @@ $(document).ready(function () {
         //control flow for answering questions
         if (triviaQuestions[currentQuestion].correct === answerIndex) {
             textShownAfterAnsweringCorrect();
-            setTimeout(function() {
+            buttonClear();            
+            setTimeout(function () {
                 rightAnswers++
                 currentQuestion++
-                buttonClear();
                 showScoreboard();
                 printCurrentQuestion(currentQuestion)
                 printAnswerButtons(currentQuestion);
@@ -163,12 +186,12 @@ $(document).ready(function () {
                         "wrong answers": wrongAnswers
                     });
                 return;
-            }, 5000);            
-            
+            }, 5000);
+
         }
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             textShownAfterAnsweringIncorrect();
-            clearInterval(timerInterval);            
+            buttonClear();            
             setTimeout(function () {
                 wrongAnswers++
                 currentQuestion++
@@ -194,6 +217,5 @@ $(document).ready(function () {
             }, {
                 "users choice data attr string parsed to int": answerIndex
             });
-    })    // End of onclick for buttons
-
+    });
 });
