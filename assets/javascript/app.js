@@ -5,17 +5,8 @@
 // - Fix all bugs with timer.
 //      - "staggered" timer when user clicks an answer and next question displays.
 //      - same with incorrect answers
-//----------------------//
-// Easy Fixes //
-//----------------------//
-// - Add instructions.
-// - Add actual questions and change correct answer index'
-// - Add instructions
-// - remove alerts, add actual conformation divs and hide/unhide toggle them for right and wrong answers etc.
-//      - If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
-//      - If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
-//      - If the player chooses the right answer, tell the player they selected the correct answer on the page. Wait a few seconds, show the next question.
-//      - Add a div with hidden toggles to show when out of questions showing score, and offering a reset.
+// - If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
+// - Add a div with hidden toggles to show when out of questions showing score, and offering a reset.
 //----------------------//
 $(document).ready(function () {
     //globals
@@ -34,7 +25,7 @@ $(document).ready(function () {
         question: "Dennis is asshole. Why Charlie Hate?",
         possibleAnswers: ["Little green ghouls, man.", "Charlie-work", "Made him do the dishes.", "BECAUSE DENNIS IS A BASTARD MAN."],
         correct: 3,
-        correctScreen: "Correct! I have contained my rage for as long as possible, but I shall unleash my fury upon you like THE CRASHING OF A THOUSAND WINDS.",
+        correctScreen: "Correct! I have contained my rage for as long as possible, but I shall unleash my fury upon you like THE CRASHING OF A THOUSAND WAVES.",
         incorrectScreen: "Incorrect! I AM THE GOLDEN GOD",
     },
     {
@@ -83,7 +74,7 @@ $(document).ready(function () {
         showScoreboard();
         $('.start-game').addClass("hidden");
         $('#buttonsdiv').removeClass("hidden");
-        // initiateTimer();
+        timerFunction()
     })
     //unhides scoreboard initially, but also used as sort of a "refresh" function.
     function showScoreboard() {
@@ -93,37 +84,33 @@ $(document).ready(function () {
         $('#noanswer').html("Questions Timed Out: " + noAnswer);
         $('#questionsremaining').html();
     }
-    //time in seconds, essentially.
-    // var timeRemaining = 10;
 
-    // var intervalVar
-    //this variable is wrapped in a function to give us a function to call to start the timer, and to prevent it from just running on load.
-    // function theTimer() {
-    // intervalVar = setInterval(countDown, 1000);
-    // }
+    function timerFunction() {
+        var timerSeconds = 20;
+        var timerInterval = setInterval(function() {
+            timerSeconds--;
+            $('#timer').html("Time Remaining: " + timerSeconds);
+            if (timerSeconds === 0) {
+                clearInterval(timerInterval);
+                textShownAfterTimeOut();
+                setTimeout(function () {
+                    wrongAnswers++
+                    currentQuestion++
+                    buttonClear();
+                    showScoreboard();
+                    printCurrentQuestion(currentQuestion);
+                    printAnswerButtons(currentQuestion);
+                    timerFunction();
+                    console.log({
+                        "right answers": rightAnswers
+                    }, {
+                            "wrong answers": wrongAnswers
+                        });
+                }, 5000);
+            }
+        }, 1000)
+    }
 
-    // function countDown() {
-    // timeRemaining--;
-    // $('#timer').html(timeRemaining);
-    // if (timeRemaining === 0) {     
-    // timeOut();
-    // }
-    // }
-    //small function to call the timer to start
-    // function initiateTimer() {
-    // $('#timer').html(theTimer);
-    // }
-    //function incriments noAnswer by one, selects and prints the next question, refreshes the scoreboard, and restarts the timer if the timer runs out on the previous question.
-    // function timeOut() {
-    // clearInterval(intervalVar);
-    // timeRemaining = 10;
-    // alert("Time has run out.");
-    // noAnswer++
-    // currentQuestion++
-    // printCurrentQuestion(currentQuestion);
-    // showScoreboard();
-    // initiateTimer();
-    // }
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').removeClass("hidden");
@@ -147,6 +134,9 @@ $(document).ready(function () {
     }
     function textShownAfterAnsweringIncorrect() {
         $('#questionsdiv').html(triviaQuestions[currentQuestion].incorrectScreen);        
+    }
+    function textShownAfterTimeOut() {
+        $('#questionsdiv').html("timeout")
     }
     //clears previous buttons
     function buttonClear() {
@@ -178,6 +168,7 @@ $(document).ready(function () {
         }
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             textShownAfterAnsweringIncorrect();
+            clearInterval(timerInterval);            
             setTimeout(function () {
                 wrongAnswers++
                 currentQuestion++
