@@ -15,60 +15,58 @@ $(document).ready(function () {
     var noAnswer = 0;
     //Questions array of objects
     var triviaQuestions = [{
-        question: "What is the greatest band in the world?",
-        possibleAnswers: ["Electric Dream Machine", "Boyz II Men", "Chumbawamba", "Steve Winwood"],
-        correct: 2,
-        correctScreen: "Okay, yeah, you know what? A lot of the questions are opinion-based. Heads up. Ah.",
-        incorrectScreen: "Incorrect. Okay, yeah, you know what? A lot of the questions are opinion-based. Heads up. Ah.",
-    },
-    {
-        question: "Dennis is asshole. Why Charlie Hate?",
-        possibleAnswers: ["Little green ghouls, man.", "Charlie-work", "Made him do the dishes.", "BECAUSE DENNIS IS A BASTARD MAN."],
-        correct: 3,
-        correctScreen: "Correct! I have contained my rage for as long as possible, but I shall unleash my fury upon you like THE CRASHING OF A THOUSAND WAVES.",
-        incorrectScreen: "Incorrect! I AM THE GOLDEN GOD",
-    },
-    {
-        question: "What is the 'S' in the D.E.N.N.I.S. System?",
-        possibleAnswers: ["Shenanigans", "Seperate Entirely", "Sensual Energy", "Signal Break Up"],
-        correct: 1,
-        correctScreen: "Correct! Smooth! Very- Very smooth stuff. Very classy. I'm learning a lot from you right now, dude.",
-        incorrectScreen: "Incorrect! Okay, CLEARLY none of you have ANY idea how to run my system. My system of seduction that i used to win your heart, that these IDIOTS are RUINING right now!",
-    },
-    {
-        question: "How much cheese is too much cheese?",
-        possibleAnswers: ["One brick", "Three bricks", "Two bricks", "Any cheese before a date is too much cheese."],
-        correct: 3,
-        correctScreen: "Correct! I was eating the old cheese to test it. To see why the rats weren't eating it.",
-        incorrectScreen: "Incorrect! Cottage cheese? Like...cheese from some cottage? Whose cottage? Well, like, what is that, exactly?",
-    },
-    {
-        question: "What is Frank and Charlie's unique grooming tool?",
-        possibleAnswers: ["Back scratcher", "Toe Knife", "Pimple Popper", "Kitten Mittens"],
-        correct: 1,
-        correctScreen: "Correct! I uhhhh, use a sharp blade, to..... to dig the scum out of my toenails. Once in a while, I cut myself, but it pusses up and in a few days, good as new!",
-        incorrectScreen: "Incorrect! Ah! Botched toe! I botched that one! That's a botch job. That's bleeding, I need some trash to plug up the cut.",
-    },
-    {
-        question: "When the gang threw a wrestling match in honor of the troops, what did they call their 3 man wrestling team?",
-        possibleAnswers: ["Chickenmen", "Crows of War", "Birds of War", "Eagles of War"],
-        correct: 2,
-        correctScreen: "Correct! Yes we have feathers, ahhhhhh ahh ahhhh but the muscles of men.",
-        incorrectScreen: "Incorrect! I'm getting more of a chicken vibe.",
-    },
-    {
-        question: "What was Dee's nickname in highschool?",
-        possibleAnswers: ["Fatty Magoo", "Big Dumb Bird", "The Aluminum Monster", "Sweet Dee"],
-        correct: 2,
-        correctScreen: "Correct! Sir Mix-A-Lot was not talking about women whose backs have recovered from horrific spinal disorders.",
-        incorrectScreen: "Incorrect! I could see it in ya eyes and I could see it in ya thighs, Still fat to me still fat to you, Fatty Magoo Fatty Magoo",
-    },
+            question: "What is the greatest band in the world?",
+            possibleAnswers: ["Electric Dream Machine", "Boyz II Men", "Chumbawamba", "Steve Winwood"],
+            correct: 2,
+            correctScreen: "Okay, yeah, you know what? A lot of the questions are opinion-based. Heads up. Ah.",
+            incorrectScreen: "Incorrect. Okay, yeah, you know what? A lot of the questions are opinion-based. Heads up. Ah.",
+        },
+        {
+            question: "Dennis is asshole. Why Charlie Hate?",
+            possibleAnswers: ["Little green ghouls, man.", "Charlie-work", "Made him do the dishes.", "BECAUSE DENNIS IS A BASTARD MAN."],
+            correct: 3,
+            correctScreen: "Correct! I have contained my rage for as long as possible, but I shall unleash my fury upon you like THE CRASHING OF A THOUSAND WAVES.",
+            incorrectScreen: "Incorrect! I AM THE GOLDEN GOD",
+        },
+        {
+            question: "What is the 'S' in the D.E.N.N.I.S. System?",
+            possibleAnswers: ["Shenanigans", "Seperate Entirely", "Sensual Energy", "Signal Break Up"],
+            correct: 1,
+            correctScreen: "Correct! Smooth! Very- Very smooth stuff. Very classy. I'm learning a lot from you right now, dude.",
+            incorrectScreen: "Incorrect! Okay, CLEARLY none of you have ANY idea how to run my system. My system of seduction that i used to win your heart, that these IDIOTS are RUINING right now!",
+        },
+        {
+            question: "How much cheese is too much cheese?",
+            possibleAnswers: ["One brick", "Three bricks", "Two bricks", "Any cheese before a date is too much cheese."],
+            correct: 3,
+            correctScreen: "Correct! I was eating the old cheese to test it. To see why the rats weren't eating it.",
+            incorrectScreen: "Incorrect! Cottage cheese? Like...cheese from some cottage? Whose cottage? Well, like, what is that, exactly?",
+        },
+        {
+            question: "What is Frank and Charlie's unique grooming tool?",
+            possibleAnswers: ["Back scratcher", "Toe Knife", "Pimple Popper", "Kitten Mittens"],
+            correct: 1,
+            correctScreen: "Correct! I uhhhh, use a sharp blade, to..... to dig the scum out of my toenails. Once in a while, I cut myself, but it pusses up and in a few days, good as new!",
+            incorrectScreen: "Incorrect! Ah! Botched toe! I botched that one! That's a botch job. That's bleeding, I need some trash to plug up the cut.",
+        },
+        {
+            question: "When the gang threw a wrestling match in honor of the troops, what did they call their 3 man wrestling team?",
+            possibleAnswers: ["Chickenmen", "Crows of War", "Birds of War", "Eagles of War"],
+            correct: 2,
+            correctScreen: "Correct! Yes we have feathers, ahhhhhh ahh ahhhh but the muscles of men.",
+            incorrectScreen: "Incorrect! I'm getting more of a chicken vibe.",
+        },
+        {
+            question: "What was Dee's nickname in highschool?",
+            possibleAnswers: ["Fatty Magoo", "Big Dumb Bird", "The Aluminum Monster", "Sweet Dee"],
+            correct: 2,
+            correctScreen: "Correct! Sir Mix-A-Lot was not talking about women whose backs have recovered from horrific spinal disorders.",
+            incorrectScreen: "Incorrect! I could see it in ya eyes and I could see it in ya thighs, Still fat to me still fat to you, Fatty Magoo Fatty Magoo",
+        },
     ];
     // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
     //will be incremented (++) to display a new question.
     var currentQuestion = 0;
-    var winCheckVar = parseInt(currentQuestion + 1);
-    console.log(winCheckVar);
     //function that prints the current question to the page, takes an argument of "current question"
     $('.start-game').on("click", function () {
         printCurrentQuestion(currentQuestion);
@@ -92,27 +90,22 @@ $(document).ready(function () {
         var timerInterval = setInterval(function () {
             timerSeconds--;
             $('#timer').html("Time Remaining: " + timerSeconds);
-            $(document).on("click", ".button", function () {
-                clearInterval(timerInterval);
-                timerSeconds = 20;
-                $('#timer').html("Time Remaining: " + timerSeconds);
-            });
             if (timerSeconds === 0) {
                 clearInterval(timerInterval);
                 timerSeconds = 20;
                 $('#timer').html("Time Remaining: " + timerSeconds);
                 textShownAfterTimeOut();
                 buttonClear();
-                if (winCheckVar > triviaQuestions.length) {
+                if (currentQuestion + 1 === triviaQuestions.length) {
                     winCheck();
+                    clearInterval(timerInterval);
+                    timerSeconds =20;
                 }
                 setTimeout(function () {
                     wrongAnswers++
                     currentQuestion++
-                   if (currentQuestion <= triviaQuestions.length) {
-                        console.log({ "RIGHT ANSWERS: ": rightAnswers });
-                        console.log({ "Wrong Answers: ": wrongAnswers });
-                        console.log({ "Current Score": Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100) + "%" });
+                    console.log(currentQuestion + 1, triviaQuestions.length);                    
+                    if (currentQuestion < triviaQuestions.length) {
                         showScoreboard();
                         printCurrentQuestion(currentQuestion);
                         printAnswerButtons(currentQuestion);
@@ -120,6 +113,11 @@ $(document).ready(function () {
                 }, 5000)
             }
         }, 1000)
+        $(document).on("click", ".button", function () {
+            clearInterval(timerInterval);
+            timerSeconds = 20;
+            $('#timer').html("Time Remaining: " + timerSeconds);
+        });
     }
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(currentQuestion) {
@@ -143,9 +141,11 @@ $(document).ready(function () {
     function textShownAfterAnsweringCorrect() {
         $('#questionsdiv').html(triviaQuestions[currentQuestion].correctScreen);
     }
+
     function textShownAfterAnsweringIncorrect() {
         $('#questionsdiv').html(triviaQuestions[currentQuestion].incorrectScreen);
     }
+
     function textShownAfterTimeOut() {
         $('#questionsdiv').html("timeout")
     }
@@ -162,59 +162,57 @@ $(document).ready(function () {
         if (triviaQuestions[currentQuestion].correct === answerIndex) {
             textShownAfterAnsweringCorrect();
             buttonClear();
-            if (winCheckVar > triviaQuestions.length) {
+            console.log(currentQuestion + 1, triviaQuestions.length);
+            if (currentQuestion + 1 === triviaQuestions.length) {
                 winCheck();
             }
-            setTimeout(function () {
-                rightAnswers++
-                currentQuestion++
-                if (currentQuestion <= triviaQuestions.length) {
-                    console.log({ "RIGHT ANSWERS: ": rightAnswers });
-                    console.log({ "Wrong Answers: ": wrongAnswers });
-                    console.log({ "Current Score": Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100) + "%" })
+            if (currentQuestion < triviaQuestions.length) {
+                setTimeout(function () {
+                    rightAnswers++
+                    currentQuestion++
                     buttonClear();
                     showScoreboard();
                     printCurrentQuestion(currentQuestion);
                     printAnswerButtons(currentQuestion);
-                }
-            }, 5000);
-
+                }, 5000);
+            }
         }
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             textShownAfterAnsweringIncorrect();
             buttonClear();
-            if (winCheckVar > triviaQuestions.length) {
+            console.log(currentQuestion + 1, triviaQuestions.length);
+            if (currentQuestion + 1 === triviaQuestions.length) {
                 winCheck();
             }
-            setTimeout(function () {
-                wrongAnswers++
-                currentQuestion++
-                if (currentQuestion <= triviaQuestions.length) {
-                    console.log({ "RIGHT ANSWERS: ": rightAnswers });
-                    console.log({ "Wrong Answers: ": wrongAnswers });
-                    console.log({ "Current Score": Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100) + "%" })
+            if (currentQuestion < triviaQuestions.length) {
+                setTimeout(function () {
+                    wrongAnswers++
+                    currentQuestion++
                     buttonClear();
                     showScoreboard();
                     printCurrentQuestion(currentQuestion);
                     printAnswerButtons(currentQuestion);
-                }
-            }, 5000);
+                }, 5000);
+            }
         }
     });
 
     function winCheck() {
-
         var scoreCalc = Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100)
         var totalScore = scoreCalc + "%";
         if (scoreCalc >= 70) {
-            console.log({"Total Score":totalScore});
+            console.log({
+                "Total Score": totalScore
+            });
             $('#questionsdiv').html("YOU WIN WITH AN AMAZING " + totalScore);
-            throw Error("Yay win")
+            return;
         }
         if (scoreCalc < 70) {
-            console.log({"Total Score":totalScore});
+            console.log({
+                "Total Score": totalScore
+            });
             $('#questionsdiv').html("YOU LOSE WITH A TERRIBLE " + totalScore);
-            throw Error ("you lose")
+            return;
         }
     }
 });
