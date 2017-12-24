@@ -67,6 +67,8 @@ $(document).ready(function () {
     // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
     //will be incremented (++) to display a new question.
     var currentQuestion = 0;
+    var winCheckVar = parseInt(currentQuestion + 1);
+    console.log(winCheckVar);
     //function that prints the current question to the page, takes an argument of "current question"
     $('.start-game').on("click", function () {
         printCurrentQuestion(currentQuestion);
@@ -86,14 +88,14 @@ $(document).ready(function () {
 
 
     function timerFunction() {
-        var timerSeconds = 20;        
+        var timerSeconds = 20;
         var timerInterval = setInterval(function () {
             timerSeconds--;
             $('#timer').html("Time Remaining: " + timerSeconds);
             $(document).on("click", ".button", function () {
                 clearInterval(timerInterval);
                 timerSeconds = 20;
-                $('#timer').html("Time Remaining: " + timerSeconds);                
+                $('#timer').html("Time Remaining: " + timerSeconds);
             });
             if (timerSeconds === 0) {
                 clearInterval(timerInterval);
@@ -101,12 +103,21 @@ $(document).ready(function () {
                 $('#timer').html("Time Remaining: " + timerSeconds);
                 textShownAfterTimeOut();
                 buttonClear();
+                if (winCheckVar > triviaQuestions.length) {
+                    winCheck();
+                    return;
+                }
                 setTimeout(function () {
                     wrongAnswers++
                     currentQuestion++
-                    showScoreboard();
-                    printCurrentQuestion(currentQuestion);
-                    printAnswerButtons(currentQuestion);
+                   if (currentQuestion <= triviaQuestions.length) {
+                        console.log({ "RIGHT ANSWERS: ": rightAnswers });
+                        console.log({ "Wrong Answers: ": wrongAnswers });
+                        console.log({ "Current Score": Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100) + "%" });
+                        showScoreboard();
+                        printCurrentQuestion(currentQuestion);
+                        printAnswerButtons(currentQuestion);
+                    }
                 }, 5000)
             }
         }, 1000)
@@ -151,41 +162,62 @@ $(document).ready(function () {
         //control flow for answering questions
         if (triviaQuestions[currentQuestion].correct === answerIndex) {
             textShownAfterAnsweringCorrect();
-            buttonClear();            
+            buttonClear();
+            if (winCheckVar > triviaQuestions.length) {
+                winCheck();
+                return;
+            }
             setTimeout(function () {
                 rightAnswers++
-                winCheck();
                 currentQuestion++
-                showScoreboard();
-                printCurrentQuestion(currentQuestion)
-                printAnswerButtons(currentQuestion);
-
+                if (currentQuestion <= triviaQuestions.length) {
+                    console.log({ "RIGHT ANSWERS: ": rightAnswers });
+                    console.log({ "Wrong Answers: ": wrongAnswers });
+                    console.log({ "Current Score": Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100) + "%" })
+                    buttonClear();
+                    showScoreboard();
+                    printCurrentQuestion(currentQuestion);
+                    printAnswerButtons(currentQuestion);
+                }
             }, 5000);
 
         }
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             textShownAfterAnsweringIncorrect();
-            buttonClear();            
+            buttonClear();
+            if (winCheckVar > triviaQuestions.length) {
+                winCheck();
+                return;
+            }
             setTimeout(function () {
                 wrongAnswers++
-                winCheck();
                 currentQuestion++
-                buttonClear();
-                showScoreboard();
-                printCurrentQuestion(currentQuestion);
-                printAnswerButtons(currentQuestion);
+                if (currentQuestion <= triviaQuestions.length) {
+                    console.log({ "RIGHT ANSWERS: ": rightAnswers });
+                    console.log({ "Wrong Answers: ": wrongAnswers });
+                    console.log({ "Current Score": Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100) + "%" })
+                    buttonClear();
+                    showScoreboard();
+                    printCurrentQuestion(currentQuestion);
+                    printAnswerButtons(currentQuestion);
+                }
             }, 5000);
         }
     });
 
     function winCheck() {
-        console.log({"Current Question number":currentQuestion});
-        console.log({"Number of Questions Total": triviaQuestions.length});
-        console.log({"Math Test":Math.floor(rightAnswers/(rightAnswers + wrongAnswers) * 100) + "%"})
-        if (currentQuestion > triviaQuestions.length) {
-            
+
+        var scoreCalc = Math.floor(rightAnswers / (rightAnswers + wrongAnswers) * 100)
+        var totalScore = scoreCalc + "%";
+        if (scoreCalc >= 70) {
+            console.log({"Total Score":totalScore});
+            $('#questionsdiv').html("YOU WIN WITH AN AMAZING " + totalScore);
+            return;
         }
-        console.log({"RIGHT ANSWERS: ": rightAnswers});
-        console.log({"Wrong Answers: ": wrongAnswers});
-    }    
+        if (scoreCalc < 70) {
+            console.log({"Total Score":totalScore});
+            $('#questionsdiv').html("YOU LOSE WITH A TERRIBLE " + totalScore);
+            return;
+        }
+    }
 });
