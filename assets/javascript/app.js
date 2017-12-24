@@ -107,32 +107,10 @@ $(document).ready(function () {
                     showScoreboard();
                     printCurrentQuestion(currentQuestion);
                     printAnswerButtons(currentQuestion);
-                    console.log({
-                        "right answers": rightAnswers
-                    }, {
-                            "wrong answers": wrongAnswers
-                        });
                 }, 5000)
             }
         }, 1000)
     }
-    // function timeOut() {
-    //     setTimeout(function () {
-    //         wrongAnswers++
-    //         currentQuestion++
-    //         buttonClear();
-    //         showScoreboard();
-    //         printCurrentQuestion(currentQuestion);
-    //         printAnswerButtons(currentQuestion);
-    //         timerFunction();
-    //         console.log({
-    //             "right answers": rightAnswers
-    //         }, {
-    //                 "wrong answers": wrongAnswers
-    //             });
-    //     }, 5000);
-    // }
-
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').removeClass("hidden");
@@ -176,16 +154,12 @@ $(document).ready(function () {
             buttonClear();            
             setTimeout(function () {
                 rightAnswers++
+                winCheck();
                 currentQuestion++
                 showScoreboard();
                 printCurrentQuestion(currentQuestion)
                 printAnswerButtons(currentQuestion);
-                console.log({
-                    "right answers": rightAnswers
-                }, {
-                        "wrong answers": wrongAnswers
-                    });
-                return;
+
             }, 5000);
 
         }
@@ -194,28 +168,24 @@ $(document).ready(function () {
             buttonClear();            
             setTimeout(function () {
                 wrongAnswers++
+                winCheck();
                 currentQuestion++
                 buttonClear();
                 showScoreboard();
                 printCurrentQuestion(currentQuestion);
                 printAnswerButtons(currentQuestion);
-                console.log({
-                    "right answers": rightAnswers
-                }, {
-                        "wrong answers": wrongAnswers
-                    });
             }, 5000);
-
         }
-        //console logs all info needed to write control flow.
-        console.log({
-            "users choice": answerText
-        }, {
-                "index Data Value assigned to choice": answerDataValue
-            }, {
-                "Correct answer's index": triviaQuestions[currentQuestion].correct
-            }, {
-                "users choice data attr string parsed to int": answerIndex
-            });
     });
+
+    function winCheck() {
+        console.log({"Current Question number":currentQuestion});
+        console.log({"Number of Questions Total": triviaQuestions.length});
+        console.log({"Math Test":Math.floor(rightAnswers/(rightAnswers + wrongAnswers) * 100) + "%"})
+        if (currentQuestion > triviaQuestions.length) {
+            
+        }
+        console.log({"RIGHT ANSWERS: ": rightAnswers});
+        console.log({"Wrong Answers: ": wrongAnswers});
+    }    
 });
