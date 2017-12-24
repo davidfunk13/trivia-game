@@ -74,7 +74,7 @@ $(document).ready(function () {
         showScoreboard();
         $('.start-game').addClass("hidden");
         $('#buttonsdiv').removeClass("hidden");
-        timerFunction()
+        // timerFunction()
     })
     //unhides scoreboard initially, but also used as sort of a "refresh" function.
     function showScoreboard() {
@@ -85,45 +85,44 @@ $(document).ready(function () {
     }
 
 
-    function timerFunction() {
-        var timerSeconds = 20;
-        var timerInterval = setInterval(function () {
-            timerSeconds--;
-            $('#timer').html("Time Remaining: " + timerSeconds);
-            if (timerSeconds === 0) {
-                clearInterval(timerInterval);
-                timerSeconds = 20;
-                $('#timer').html("Time Remaining: " + timerSeconds);
-                textShownAfterTimeOut();
-                buttonClear();
-                if (currentQuestion + 1 === triviaQuestions.length) {
-                    winCheck();
-                    clearInterval(timerInterval);
-                    timerSeconds =20;
-                }
-                setTimeout(function () {
-                    wrongAnswers++
-                    currentQuestion++
-                    console.log(currentQuestion + 1, triviaQuestions.length);                    
-                    if (currentQuestion < triviaQuestions.length) {
-                        showScoreboard();
-                        printCurrentQuestion(currentQuestion);
-                        printAnswerButtons(currentQuestion);
-                    }
-                }, 5000)
-            }
-        }, 1000)
-        $(document).on("click", ".button", function () {
-            clearInterval(timerInterval);
-            timerSeconds = 20;
-            $('#timer').html("Time Remaining: " + timerSeconds);
-        });
-    }
+    // function timerFunction() {
+    //     function timerCheck() {
+    //             if (currentQuestion + 1 === triviaQuestions.length) {
+    //                 winCheck();
+    //             }
+    //             if (currentQuestion < triviaQuestions.length) {
+    //                 setTimeout(function () {
+    //                     wrongAnswers++
+    //                     currentQuestion++
+    //                     showScoreboard();
+    //                     printCurrentQuestion(currentQuestion);
+    //                     printAnswerButtons(currentQuestion);
+    //                     console.log(currentQuestion + 1, triviaQuestions.length);
+    //                 }, 5000)
+    //             }
+    //     }
+    //     var timerSeconds = 10;
+    //     var timerInterval = setInterval(function () {
+    //         timerSeconds--;
+    //         $('#timer').html("Time Remaining: " + timerSeconds);
+    //         if (timerSeconds === 0) {
+    //             clearInterval(timerInterval);
+    //             timerSeconds = 10;
+    //             $('#timer').html("Time Remaining: " + timerSeconds);
+    //             timerCheck();
+    //         }
+    //     }, 1000)
+    //     $(document).on("click", ".button", function () {
+    //         clearInterval(timerInterval);
+    //         timerSeconds = 10;
+    //         $('#timer').html("Time Remaining: " + timerSeconds);
+    //     });
+    // }
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(currentQuestion) {
         $('#questionsdiv').removeClass("hidden");
         $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
-        timerFunction();
+        // timerFunction();
     }
 
     //function that prints answers on buttons. 
@@ -162,13 +161,16 @@ $(document).ready(function () {
         if (triviaQuestions[currentQuestion].correct === answerIndex) {
             textShownAfterAnsweringCorrect();
             buttonClear();
-            console.log(currentQuestion + 1, triviaQuestions.length);
+            rightAnswers++
+            showScoreboard();            
+            console.log({"Question Index:" : currentQuestion},{"current quesiton no:" : currentQuestion + 1}, {"Total no of questions":triviaQuestions.length});
             if (currentQuestion + 1 === triviaQuestions.length) {
+                currentQuestion++
                 winCheck();
+                return;
             }
-            if (currentQuestion < triviaQuestions.length) {
+            if (currentQuestion !== triviaQuestions.length) {
                 setTimeout(function () {
-                    rightAnswers++
                     currentQuestion++
                     buttonClear();
                     showScoreboard();
@@ -180,13 +182,15 @@ $(document).ready(function () {
         if (triviaQuestions[currentQuestion].correct !== answerIndex) {
             textShownAfterAnsweringIncorrect();
             buttonClear();
-            console.log(currentQuestion + 1, triviaQuestions.length);
+            wrongAnswers++
+            showScoreboard();            
+            console.log({"Question Index:" : currentQuestion},{"current quesiton no:" : currentQuestion + 1}, {"Total no of questions":triviaQuestions.length});
             if (currentQuestion + 1 === triviaQuestions.length) {
                 winCheck();
+                return;
             }
-            if (currentQuestion < triviaQuestions.length) {
+            if (currentQuestion !== triviaQuestions.length) {
                 setTimeout(function () {
-                    wrongAnswers++
                     currentQuestion++
                     buttonClear();
                     showScoreboard();
@@ -205,14 +209,12 @@ $(document).ready(function () {
                 "Total Score": totalScore
             });
             $('#questionsdiv').html("YOU WIN WITH AN AMAZING " + totalScore);
-            return;
         }
         if (scoreCalc < 70) {
             console.log({
                 "Total Score": totalScore
             });
             $('#questionsdiv').html("YOU LOSE WITH A TERRIBLE " + totalScore);
-            return;
         }
     }
 });
