@@ -64,6 +64,20 @@ $(document).ready(function () {
             correctScreen: "Correct! Sir Mix-A-Lot was not talking about women whose backs have recovered from horrific spinal disorders.",
             incorrectScreen: "Incorrect! I could see it in ya eyes and I could see it in ya thighs, Still fat to me still fat to you, Fatty Magoo Fatty Magoo",
         },
+        {
+            question: "In the episode 'The Gang Gets Analyzed, Who has to do the dishes?",
+            possibleAnswers: ["Mac","Dennis","Charlie","Dee"],
+            correct: 3,
+            correctScreen: "Correct! DEE DO THE DAMN DISHES!",
+            incorrectScreen: "Incorrect! Quote here",
+        },
+        {
+            question: "In the episode 'Sweet Dee has a Heart Attack', What does Dee accidentally inject Dennis with?",
+            possibleAnswers: ["Mexican Collagen","Mexican Botox", "Mexican Ephedra", "Whiskey"],
+            correct: 0,
+            correctScreen: "Correct!",
+            incorrectScreen: "Incorrect!",
+        },
     ];
     // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
     //will be incremented (++) to display a new question.
@@ -177,7 +191,7 @@ $(document).ready(function () {
                 "Total Score": totalScore
             });
             $('#questionsdiv').html("YOU LOSE WITH A TERRIBLE " + totalScore);
-            $('#questionsdiv').append("<button class='resetbutton'>Reset Game</button>")
+            $('#questionsdiv').append("<div class='resetdiv'><button class='resetbutton'>Reset Game</button></div>")
             $('.resetbutton').on("click", function () {
                 location.reload();
             });
