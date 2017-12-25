@@ -81,7 +81,6 @@ $(document).ready(function () {
         $('.scoreboard').removeClass("hidden");
         $('#rightanswers').html("Correct answers: " + rightAnswers);
         $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
-        $('#questionsremaining').html();
     }
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
     function printCurrentQuestion(questionIndex) {
@@ -168,14 +167,20 @@ $(document).ready(function () {
                 "Total Score": totalScore
             });
             $('#questionsdiv').html("YOU WIN WITH AN AMAZING " + totalScore);
-            return;
+            $('#questionsdiv').append("<button class='resetbutton'>Reset Game</button>")
+            $('.resetbutton').on("click", function () {
+                location.reload();
+            });             
         }
         if (scoreCalc < 70) {
             console.log({
                 "Total Score": totalScore
             });
             $('#questionsdiv').html("YOU LOSE WITH A TERRIBLE " + totalScore);
-            return;
+            $('#questionsdiv').append("<button class='resetbutton'>Reset Game</button>")
+            $('.resetbutton').on("click", function () {
+                location.reload();
+            });
         }
     }
 
