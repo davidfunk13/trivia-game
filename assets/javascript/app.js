@@ -68,15 +68,50 @@ $(document).ready(function () {
             question: "In the episode 'The Gang Gets Analyzed, Who has to do the dishes?",
             possibleAnswers: ["Mac","Dennis","Charlie","Dee"],
             correct: 3,
-            correctScreen: "Correct! DEE DO THE DAMN DISHES!",
-            incorrectScreen: "Incorrect! Quote here",
+            correctScreen: "Correct! Well, Charlie Work is, like, you know... like basement stuff, cleaning urinals, uh, blood stuff, your basic slimes, your sludges, anything dead or decay, you know - I'm on it, I'm dealing with it!",
+            incorrectScreen: "Incorrect! DEE DO THE DAMN DISHES",
         },
         {
             question: "In the episode 'Sweet Dee has a Heart Attack', What does Dee accidentally inject Dennis with?",
             possibleAnswers: ["Mexican Collagen","Mexican Botox", "Mexican Ephedra", "Whiskey"],
             correct: 0,
-            correctScreen: "Correct!",
-            incorrectScreen: "Incorrect!",
+            correctScreen: "Correct! Come to think of it, I do feel a bit of pain coming on.",
+            incorrectScreen: "Incorrect! YOU INJECTED ME WITH MEXICAN COLLAGEN?",
+        },
+        {
+            question: "What do Pepperjack Love?",
+            possibleAnswers: ["Sweet Dee", "Chocolate", "Fraggle Rock", "Expensive Canes"],
+            correct: 2,
+            correctScreen: "Correct! PepperJack LOVES Fraggle Rock",
+            incorrectScreen:"Incorrect! Do PepperJack LOOK like he playin?",
+        },
+        {
+            question: "What did Mac instruct Dennis to burn in his will when faking his own death?",
+            possibleAnswers: ["Trenchcoat","Duster","Hoodie", "Favorite shoes"],
+            correct: 1,
+            correctScreen: "Correct! Hey, I'm not burning the duster! Okay, I'm not burning the duster. Alright. That's crazy. That's like...that's insane. Why would I ever burn...heh...I mean c'mon...I will continue to wear it in his honor and I will burn some other things. You know, maybe like these stupid god damn sleeveless t-shirts that he wants retired and hung up in the bar. I'll burn these, but I am not burning the duster. Okay? So forget it. It probably won't even burn anyway. It's not supposed to, it's flame retardant. That's like the whole point. It's like a shield of armor. So stop asking me to burn the duster! I'm not going to burn it! So...end of story, you know? Let's just move on. Okay? So...yeah, alright, well uh thank you",
+            incorrectScreen: "Incorrect! We should've got beans, dude."
+        },
+        {
+            question: "What is the preferred drink of the McPoyle family?",
+            possibleAnswers: ["Orange Juice", "Warm soda", "Moonshine", "Milk"],
+            correct: 3,
+            correctScreen: "I spiked the milk with Methylenedioxypyrovalerone. It’s bath salts. Yeah, it’s like coke and acid and, like, meth all combined. It's awesome.",
+            incorrectScreen: "Incorrect! How is a glass of milk gonna loosen me up, Bill?",
+        },
+        {
+            question: "Philly's Annual Flipcup Tournament",
+            possibleAnswers: ["Philly Phlip Cup", "Flipadelphia", "Philadelphia Beer Games", "Liberty Bell Games"],
+            correct: 1,
+            correctScreen:"Correct! Fliiip fliip fliiipadelphia.",
+            incorrectScreen:"Incorrect! Weeelllll THAT's becuase you just drank a big cup of POISON.",
+        },
+        {
+            question: "Who died in Mac and Charlie's Childhood pool?",
+            possibleAnswers: ["Gail the Snail", "Schmitty", "Tim Murphy", "Jamie Nelson"],
+            correct: 3,
+            correctScreen: "Correct! Ugh! Gross, dude. I will not go to that disgusting public pool. ... 'Cause Jamie Nelson drowned in it.",
+            incorrectScreen:"Incorrect!Just accept the fact that youre white trash, dude. Look at yourself. You can't do backflips, you DON'T know karate, you're white trash!",
         },
     ];
     // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
@@ -124,7 +159,7 @@ $(document).ready(function () {
     }
 
     function textShownAfterTimeOut() {
-        $('#questionsdiv').html("timeout")
+        $('#questionsdiv').html("<p>Out of Time! Wrong answer +1</p><img src='./assets/images/timeoutgif.gif' alt='You're so stupid.'>");
     }
     //clears previous buttons
     function buttonClear() {
