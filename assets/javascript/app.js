@@ -10,6 +10,7 @@
 //----------------------//
 $(document).ready(function () {
     //globals
+    var questionIndex = 0;
     var rightAnswers = 0;
     var wrongAnswers = 0;
     var noAnswer = 0;
@@ -66,15 +67,14 @@ $(document).ready(function () {
     ];
     // variable with value = to index of triviaQuestions.question (ie Q1, Q2, Q3, Q4)
     //will be incremented (++) to display a new question.
-    var currentQuestion = 0;
+
     //function that prints the current question to the page, takes an argument of "current question"
     $('.start-game').on("click", function () {
-        printCurrentQuestion(currentQuestion);
-        printAnswerButtons(currentQuestion);
+        printCurrentQuestion(questionIndex);
+        printAnswerButtons(questionIndex);
         showScoreboard();
         $('.start-game').addClass("hidden");
         $('#buttonsdiv').removeClass("hidden");
-        // timerFunction()
     })
     //unhides scoreboard initially, but also used as sort of a "refresh" function.
     function showScoreboard() {
@@ -83,66 +83,31 @@ $(document).ready(function () {
         $('#wronganswers').html("Incorrect answers: " + wrongAnswers);
         $('#questionsremaining').html();
     }
-
-
-    // function timerFunction() {
-    //     function timerCheck() {
-    //             if (currentQuestion + 1 === triviaQuestions.length) {
-    //                 winCheck();
-    //             }
-    //             if (currentQuestion < triviaQuestions.length) {
-    //                 setTimeout(function () {
-    //                     wrongAnswers++
-    //                     currentQuestion++
-    //                     showScoreboard();
-    //                     printCurrentQuestion(currentQuestion);
-    //                     printAnswerButtons(currentQuestion);
-    //                     console.log(currentQuestion + 1, triviaQuestions.length);
-    //                 }, 5000)
-    //             }
-    //     }
-    //     var timerSeconds = 10;
-    //     var timerInterval = setInterval(function () {
-    //         timerSeconds--;
-    //         $('#timer').html("Time Remaining: " + timerSeconds);
-    //         if (timerSeconds === 0) {
-    //             clearInterval(timerInterval);
-    //             timerSeconds = 10;
-    //             $('#timer').html("Time Remaining: " + timerSeconds);
-    //             timerCheck();
-    //         }
-    //     }, 1000)
-    //     $(document).on("click", ".button", function () {
-    //         clearInterval(timerInterval);
-    //         timerSeconds = 10;
-    //         $('#timer').html("Time Remaining: " + timerSeconds);
-    //     });
-    // }
     //initially unhides the hidden question div when user hits start game. Then used to update the question displayed.
-    function printCurrentQuestion(currentQuestion) {
+    function printCurrentQuestion(questionIndex) {
         $('#questionsdiv').removeClass("hidden");
-        $('#questionsdiv').text(triviaQuestions[currentQuestion].question);
-        // timerFunction();
+        $('#questionsdiv').text(triviaQuestions[questionIndex].question);
+        callTimer();
     }
 
     //function that prints answers on buttons. 
-    function printAnswerButtons(currentQuestion) {
-        for (var i = 0; i < triviaQuestions[currentQuestion].possibleAnswers.length; i++) {
+    function printAnswerButtons(questionIndex) {
+        for (var i = 0; i < triviaQuestions[questionIndex].possibleAnswers.length; i++) {
             var button = $("<button>");
             button.addClass("button");
             button.addClass("choice-buttons");
             button.attr("data-index", i);
-            button.text(triviaQuestions[currentQuestion].possibleAnswers[i]);
+            button.text(triviaQuestions[questionIndex].possibleAnswers[i]);
             $("#buttonsdiv").append(button);
         }
     };
 
     function textShownAfterAnsweringCorrect() {
-        $('#questionsdiv').html(triviaQuestions[currentQuestion].correctScreen);
+        $('#questionsdiv').html(triviaQuestions[questionIndex].correctScreen);
     }
 
     function textShownAfterAnsweringIncorrect() {
-        $('#questionsdiv').html(triviaQuestions[currentQuestion].incorrectScreen);
+        $('#questionsdiv').html(triviaQuestions[questionIndex].incorrectScreen);
     }
 
     function textShownAfterTimeOut() {
@@ -158,46 +123,39 @@ $(document).ready(function () {
         var answerDataValue = $(this).attr("data-index");
         var answerIndex = parseInt(answerDataValue)
         //control flow for answering questions
-        if (triviaQuestions[currentQuestion].correct === answerIndex) {
+        if (triviaQuestions[questionIndex].correct === answerIndex) {
             textShownAfterAnsweringCorrect();
             buttonClear();
             rightAnswers++
-            showScoreboard();            
-            console.log({"Question Index:" : currentQuestion},{"current quesiton no:" : currentQuestion + 1}, {"Total no of questions":triviaQuestions.length});
-            if (currentQuestion + 1 === triviaQuestions.length) {
-                currentQuestion++
-                winCheck();
-                return;
-            }
-            if (currentQuestion !== triviaQuestions.length) {
+            showScoreboard();
+            if (questionIndex !== triviaQuestions.length) {
                 setTimeout(function () {
-                    currentQuestion++
                     buttonClear();
                     showScoreboard();
-                    printCurrentQuestion(currentQuestion);
-                    printAnswerButtons(currentQuestion);
+                    printCurrentQuestion(questionIndex);
+                    printAnswerButtons(questionIndex);
                 }, 5000);
             }
         }
-        if (triviaQuestions[currentQuestion].correct !== answerIndex) {
+        if (triviaQuestions[questionIndex].correct !== answerIndex) {
             textShownAfterAnsweringIncorrect();
             buttonClear();
             wrongAnswers++
-            showScoreboard();            
-            console.log({"Question Index:" : currentQuestion},{"current quesiton no:" : currentQuestion + 1}, {"Total no of questions":triviaQuestions.length});
-            if (currentQuestion + 1 === triviaQuestions.length) {
-                winCheck();
-                return;
-            }
-            if (currentQuestion !== triviaQuestions.length) {
+            showScoreboard();
+            if (questionIndex !== triviaQuestions.length) {
                 setTimeout(function () {
-                    currentQuestion++
                     buttonClear();
                     showScoreboard();
-                    printCurrentQuestion(currentQuestion);
-                    printAnswerButtons(currentQuestion);
+                    printCurrentQuestion(questionIndex);
+                    printAnswerButtons(questionIndex);
                 }, 5000);
             }
+        }
+        questionIndex++
+        console.log(questionIndex);
+        if (questionIndex === triviaQuestions.length) {
+            winCheck();
+            return;
         }
     });
 
@@ -209,12 +167,59 @@ $(document).ready(function () {
                 "Total Score": totalScore
             });
             $('#questionsdiv').html("YOU WIN WITH AN AMAZING " + totalScore);
+            return;
         }
         if (scoreCalc < 70) {
             console.log({
                 "Total Score": totalScore
             });
             $('#questionsdiv').html("YOU LOSE WITH A TERRIBLE " + totalScore);
+            return;
         }
+    }
+
+    function callTimer() {
+        if (questionIndex <= triviaQuestions.length) {
+            runTimer();
+        }
+        if (questionIndex === triviaQuestions.length) {
+            console.log("no question to time");
+        }
+    }
+
+    function runTimer() {
+        var timerSeconds = 10;
+        var timerInterval = setInterval(function () {
+            timerSeconds--;
+            $('#timer').html("Time Remaining: " + timerSeconds);
+            if (timerSeconds === 0) {
+                wrongAnswers++
+                showScoreboard();
+                textShownAfterTimeOut();
+                buttonClear();
+                clearInterval(timerInterval);
+                timerSeconds = 10;
+                $('#timer').html("Time Remaining: " + timerSeconds);
+                setTimeout(function () {
+                    showScoreboard();
+                    console.log(questionIndex, triviaQuestions.length)
+                    if (questionIndex +1 < triviaQuestions.length) {
+                        questionIndex++
+                        printCurrentQuestion(questionIndex);
+                        printAnswerButtons(questionIndex);
+                    }
+                    if (questionIndex + 1 === triviaQuestions.length) {
+                        winCheck();
+                    }
+                }, 5000);
+            }
+        }, 1000)
+
+        $(document).on("click", ".button", function () {
+            clearInterval(timerInterval);
+            timerSeconds = 10;
+            $('#timer').html("Time Remaining: " + timerSeconds);
+        });
+
     }
 });
