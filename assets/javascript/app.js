@@ -128,7 +128,10 @@ $(document).ready(function () {
             buttonClear();
             rightAnswers++
             showScoreboard();
-            if (questionIndex !== triviaQuestions.length) {
+            if (questionIndex + 1 === triviaQuestions.length) {
+                winCheck();
+            }
+            if (questionIndex + 1 < triviaQuestions.length) {
                 setTimeout(function () {
                     buttonClear();
                     showScoreboard();
@@ -142,7 +145,10 @@ $(document).ready(function () {
             buttonClear();
             wrongAnswers++
             showScoreboard();
-            if (questionIndex !== triviaQuestions.length) {
+            if (questionIndex + 1 === triviaQuestions.length) {
+                winCheck();
+            }
+            if (questionIndex + 1 < triviaQuestions.length) {
                 setTimeout(function () {
                     buttonClear();
                     showScoreboard();
@@ -152,11 +158,6 @@ $(document).ready(function () {
             }
         }
         questionIndex++
-        console.log(questionIndex);
-        if (questionIndex === triviaQuestions.length) {
-            winCheck();
-            return;
-        }
     });
 
     function winCheck() {
